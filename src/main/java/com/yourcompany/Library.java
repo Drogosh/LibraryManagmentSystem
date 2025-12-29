@@ -94,4 +94,10 @@ public class Library {
                 ));
     }
 
+    public List<Book> getBooksSortedByYear(){
+        return books.values().stream()
+                .sorted(Comparator.comparingInt(Book::getYear))
+                .collect(Collectors.toList());
+    }
+
 }

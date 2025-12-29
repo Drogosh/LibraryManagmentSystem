@@ -102,4 +102,10 @@ void main() {
     genreStats.forEach((genre, count) ->
             System.out.printf("  Количесвто книг жанра %s: %d \n", genre, count));
 
+    // Книги, отсортированные по году
+    System.out.println("\nКниги, отсортированные по году издания:");
+    List<Book> sortedByYear = library.getBooksSortedByYear();
+    sortedByYear.forEach(book ->
+            System.out.printf("  %d: %s\n", book.getYear(), book.getTitle()));
+
 }
