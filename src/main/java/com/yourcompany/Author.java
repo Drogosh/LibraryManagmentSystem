@@ -30,11 +30,6 @@ public class Author implements Comparable<Author>{
         return counter;
     }
 
-
-    public int getId() {
-        return id;
-    }
-
     public String getName() {
         return name;
     }

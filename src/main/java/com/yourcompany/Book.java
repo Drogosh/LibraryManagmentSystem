@@ -84,15 +84,6 @@ public class Book {
         return Objects.hash(id);
     }
 
-    public void returnBook(){
-        if (status != BookStatus.BORROWED){
-            throw new IllegalStateException(
-                    "Книга не была выдана. Её текущий статус: " + status.getDescription()
-            );
-        }
-        status = BookStatus.AVAILABLE;
-    }
-
     public boolean isAvailable(){
         return status == BookStatus.AVAILABLE;
     }
