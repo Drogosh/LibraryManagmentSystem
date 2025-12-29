@@ -89,4 +89,15 @@ public class Library {
         return books.values().stream()
                 .filter(n -> n.getYear() == year).collect(Collectors.toList());
     }
+
+    public void borrowBook(int id) throws BookNotFoundException {
+        Book book = books.get(id);
+        if (book.getStatus() != BookStatus.AVAILABLE){
+            throw new BookNotFoundException(
+                    "Книга не может быть выдана. Её текущий статус: " + book.getStatus().getDescription()
+            );
+        }
+        book.setStatus(BookStatus.BORROWED);
+    }
+
 }

@@ -70,5 +70,20 @@ void main() {
     List<Book> books1869 = library.findBooksByYear(1869);
     books1869.forEach(System.out::println);
 
+    // Выдача книги
+    System.out.println("\n5. Выдача книги:");
+    try {
+        System.out.println("Пытаемся выдать 'Война и мир':");
+        library.borrowBook(warAndPeace.getId());
+        System.out.println("Книга успешно выдана!");
+        System.out.println("Статус книги: " + warAndPeace.getStatus().getDescription());
+
+        // Пытаемся выдать уже выданную книгу
+        System.out.println("\nПытаемся снова выдать 'Война и мир':");
+        library.borrowBook(warAndPeace.getId());
+    } catch (BookNotFoundException | IllegalStateException e) {
+        System.err.println("Ошибка: " + e.getMessage());
+    }
+
 
 }
