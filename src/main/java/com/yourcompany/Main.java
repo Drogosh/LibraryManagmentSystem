@@ -49,7 +49,6 @@ void main() {
         library.addBook(it);
         library.addBook(idiot);
         library.addBook(shining);
-        library.addBook(shining);
         System.out.println("Книги успешно добавлены!");
     } catch (DuplicateBookException e) {
         System.err.println("Ошибка: " + e.getMessage());
@@ -65,6 +64,11 @@ void main() {
     System.out.println("\nКниги в жанре ужасы:");
     List<Book> horrorBooks = library.findBooksByGenre(horror);
     horrorBooks.forEach(System.out::println);
+
+    // Поиск по году
+    System.out.println("\nКниги 1869 года:");
+    List<Book> books1869 = library.findBooksByYear(1869);
+    books1869.forEach(System.out::println);
 
 
 }

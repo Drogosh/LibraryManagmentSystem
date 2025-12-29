@@ -1,5 +1,7 @@
 package com.yourcompany;
 
+import java.time.LocalDate;
+import java.time.Year;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -75,5 +77,16 @@ public class Library {
         }
         return books.values().stream()
                 .filter(n -> n.getGenre().equals(genre)).collect(Collectors.toList());
+    }
+
+    public List<Book> findBooksByYear(int year){
+        if (year < 0) {
+            throw new IllegalArgumentException("Год не может быть отрицательным: " + year);
+        }
+        if (year > Year.now().getValue()) {
+            throw new IllegalArgumentException("Год не может быть в будущем: " + year);
+        }
+        return books.values().stream()
+                .filter(n -> n.getYear() == year).collect(Collectors.toList());
     }
 }
