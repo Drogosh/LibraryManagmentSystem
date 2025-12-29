@@ -1,17 +1,14 @@
 package com.yourcompany;
 
-import java.time.LocalDate;
 import java.time.Year;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Library {
     private Map<Integer, Book> books; // ключ - айди книги
     private List<Author> authors = new ArrayList<>();
-    private Map<String, Long> genreStatistics = new HashMap<>();
-    private static int totalBooks = 0;
+    private int totalBooks = 0;
 
     public Library() {
         this.books = new HashMap<>();
@@ -35,7 +32,7 @@ public class Library {
                 '}';
     }
 
-    public static int getTotalBooks() {
+    public int getTotalBooks() {
         return totalBooks;
     }
 
@@ -125,4 +122,29 @@ public class Library {
                 .collect(Collectors.toList());
     }
 
+    public void reserveBook(int id){
+        Book book = books.get(id);
+        if (book.getStatus() != BookStatus.AVAILABLE){
+            throw new IllegalStateException(
+                    "Книга не может быть зарезервирована. Её текущий статус: " + book.getStatus().getDescription()
+            );
+        }
+        book.setStatus(BookStatus.RESERVED);
+    }
+
+    public long getReservedBooksCount(){
+        return books.values().stream().filter(Book::isReserved).count();
+    }
+
+    public long getAvailableBooksCount(){
+        return books.values().stream().filter(Book::isAvailable).count();
+    }
+
+    public long getBorrowedBooksCount(){
+        return books.values().stream().filter(Book::isBorrowed).count();
+    }
+
+    public List<Book> getAllBooks() {
+        return new ArrayList<>(books.values());
+    }
 }

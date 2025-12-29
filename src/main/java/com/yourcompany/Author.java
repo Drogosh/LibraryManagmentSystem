@@ -46,8 +46,7 @@ public class Author implements Comparable<Author>{
 
     @Override
     public String toString() {
-        return  "id=" + id +
-                ", имя автора: '" + name + '\'' +
+        return  " имя автора: '" + name + '\'' +
                 ", страна: '" + country + '\'';
     }
 
@@ -72,4 +71,5 @@ public class Author implements Comparable<Author>{
         }
         return this.name.compareTo(o.name);
     }
+
 }

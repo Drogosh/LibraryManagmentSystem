@@ -153,6 +153,28 @@ void main() {
         System.out.println("!!!Поймано исключение: " + e.getMessage());
     }
 
+    // Резервирование книги
+    System.out.println("\n10. Резервирование книги:");
+    try {
+        library.reserveBook(crimeAndPunishment.getId());
+        System.out.println("Книга зарезервирована: " + crimeAndPunishment);
 
+        // Пытаемся выдать зарезервированную книгу
+        System.out.println("Пытаемся выдать зарезервированную книгу:");
+        library.borrowBook(crimeAndPunishment.getId());
+    } catch (BookNotFoundException | IllegalStateException e) {
+        System.out.println("!!!Ошибка: " + e.getMessage());
+    }
 
+    // Итоговая информация
+    System.out.println("\n=== Итоговая информация ===");
+    System.out.println("Всего авторов: " + Author.getTotalAuthorsCreated());
+    System.out.println("Всего книг в библиотеке: " + library.getTotalBooks());
+    System.out.println("Доступно книг: " + library.getAvailableBooksCount());
+    System.out.println("Выдано книг: " + library.getBorrowedBooksCount());
+    System.out.println("Зарезервировано книг: " + library.getReservedBooksCount());
+
+    // Вывод всех книг
+    System.out.println("\nВсе книги в библиотеке:");
+    library.getAllBooks().forEach(System.out::println);
 }

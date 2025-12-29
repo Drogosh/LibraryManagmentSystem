@@ -64,8 +64,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return  "id=" + id +
-                ", Название: '" + title + '\'' +
+        return  "Название: '" + title + '\'' +
                 ", автор: " + author +
                 ", жанр: " + genre +
                 ", год: " + year +
@@ -94,13 +93,17 @@ public class Book {
         status = BookStatus.AVAILABLE;
     }
 
-    public void reserve(){
-        if (status != BookStatus.AVAILABLE){
-            throw new IllegalStateException(
-                    "Книга не может быть зарезервирована. Её текущий статус: " + status.getDescription()
-            );
-        }
-        status = BookStatus.RESERVED;
+    public boolean isAvailable(){
+        return status == BookStatus.AVAILABLE;
     }
+
+    public boolean isBorrowed(){
+        return status == BookStatus.BORROWED;
+    }
+
+    public boolean isReserved(){
+        return status == BookStatus.RESERVED;
+    }
+
 }
 
