@@ -20,6 +20,9 @@ public class Library {
         if (books.containsKey(book.getId())){
             throw new DuplicateBookException("Книга \"" + book.getTitle() + "\" уже добавлена в библиотеку.");
         }
+        if (!authors.contains(book.getAuthor())){
+            authors.add(book.getAuthor());
+        }
         books.put(book.getId(), book);
         totalBooks += 1;
     }
@@ -98,6 +101,18 @@ public class Library {
         return books.values().stream()
                 .sorted(Comparator.comparingInt(Book::getYear))
                 .collect(Collectors.toList());
+    }
+
+    public Book getOldestBook(){
+        return books.values().stream()
+                .min(Comparator.comparing(Book::getYear))
+                        .orElse(null);
+    }
+
+    public Book getNewestBook(){
+        return books.values().stream()
+                .max(Comparator.comparing(Book::getYear))
+                .orElse(null);
     }
 
 }

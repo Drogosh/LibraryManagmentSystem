@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Book {
-    //    id, title, author, genre, year, isBorrowed
     private final int id;
     private final String title;
     private final Author author;
@@ -65,14 +64,12 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", author=" + author +
-                ", genre=" + genre +
-                ", year=" + year +
-                ", status=" + status +
-                '}';
+        return  "id=" + id +
+                ", Название: '" + title + '\'' +
+                ", автор: " + author +
+                ", жанр: " + genre +
+                ", год: " + year +
+                ", статус: " + status;
     }
 
     @Override

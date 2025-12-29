@@ -108,4 +108,11 @@ void main() {
     sortedByYear.forEach(book ->
             System.out.printf("  %d: %s\n", book.getYear(), book.getTitle()));
 
+    // Самая старая и новая книги
+    System.out.println("\nСамая старая книга:");
+    System.out.println(library.getOldestBook().getTitle() +", год выпуска: " + library.getOldestBook().getYear());
+
+    System.out.println("Самая новая книга:");
+    System.out.println(library.getNewestBook().getTitle() +", год выпуска: " + library.getNewestBook().getYear());
+
 }
