@@ -94,5 +94,12 @@ void main() {
         System.out.println("Ошибка: " + e.getMessage());
     }
 
+    System.out.println("\n7. Статистика (Stream API):");
+
+    // Группировка по жанрам
+    Map<String, Long> genreStats = library.getGenreStatistics();
+    System.out.println("Количество книг по жанрам:");
+    genreStats.forEach((genre, count) ->
+            System.out.printf("  Количесвто книг жанра %s: %d \n", genre, count));
 
 }

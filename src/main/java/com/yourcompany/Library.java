@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 public class Library {
     private Map<Integer, Book> books; // ключ - айди книги
     private List<Author> authors = new ArrayList<>();
+    private Map<String, Long> genreStatistics = new HashMap<>();
     private static int totalBooks = 0;
 
     public Library() {
@@ -32,31 +33,6 @@ public class Library {
 
     public static int getTotalBooks() {
         return totalBooks;
-    }
-
-    public void removeBook(int id){
-        books.remove(id);
-    }
-
-    public void addAuthor(Author author){
-        authors.add(author);
-    }
-
-    public void removeAuthor(String name){
-        if (name == null) return;
-
-        Iterator<Author> iterator = authors.iterator();
-        while (iterator.hasNext()) {
-            Author author = iterator.next();
-            if (name.equals(author.getName())) {
-                iterator.remove();
-                break;
-            }
-        }
-    }
-
-    public void printAuthors() {
-        authors.forEach(System.out::println);
     }
 
     public Optional<Book> findById(int id) throws BookNotFoundException {
@@ -108,6 +84,14 @@ public class Library {
             );
         }
         book.setStatus(BookStatus.AVAILABLE);
+    }
+
+    public Map<String, Long> getGenreStatistics(){
+        return books.values().stream()
+                .collect(Collectors.groupingBy(
+                        b->b.getGenre().name(),
+                        Collectors.counting()
+                ));
     }
 
 }
