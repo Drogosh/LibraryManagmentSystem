@@ -46,11 +46,9 @@ public class Author implements Comparable<Author>{
 
     @Override
     public String toString() {
-        return "Author{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", country='" + country + '\'' +
-                '}';
+        return  "id=" + id +
+                ", имя автора: '" + name + '\'' +
+                ", страна: '" + country + '\'';
     }
 
     @Override

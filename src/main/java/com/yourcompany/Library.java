@@ -1,19 +1,24 @@
 package com.yourcompany;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Library {
     private Map<Integer, Book> books; // ключ - айди книги
+    private List<Author> authors = new ArrayList<>();
+    private static int totalBooks = 0;
 
     public Library() {
         this.books = new HashMap<>();
     }
 
-    public void addBook(Book book){
+    public void addBook(Book book) throws DuplicateBookException{
+        if (books.containsKey(book.getId())){
+            throw new DuplicateBookException("Книга \"" + book.getTitle() + "\" уже добавлена в библиотеку.");
+        }
         books.put(book.getId(), book);
+        totalBooks += 1;
     }
 
     @Override
@@ -21,5 +26,54 @@ public class Library {
         return "Library{" +
                 " books=" + books +
                 '}';
+    }
+
+    public static int getTotalBooks() {
+        return totalBooks;
+    }
+
+    public void removeBook(int id){
+        books.remove(id);
+    }
+
+    public void addAuthor(Author author){
+        authors.add(author);
+    }
+
+    public void removeAuthor(String name){
+        if (name == null) return;
+
+        Iterator<Author> iterator = authors.iterator();
+        while (iterator.hasNext()) {
+            Author author = iterator.next();
+            if (name.equals(author.getName())) {
+                iterator.remove();
+                break;
+            }
+        }
+    }
+
+    public void printAuthors() {
+        authors.forEach(System.out::println);
+    }
+
+    public Optional<Book> findById(int id) throws BookNotFoundException {
+        return Optional.ofNullable(books.get(id));
+    }
+
+    public List<Book> findBooksByAuthor(String authorName){
+        if (authorName == null) {
+            return Collections.emptyList();
+        }
+        return books.values().stream()
+                .filter(n -> n.getAuthor().getName().equals(authorName)).collect(Collectors.toList());
+    }
+
+    public List<Book> findBooksByGenre(Genre genre){
+        if (genre == null){
+            return Collections.emptyList();
+        }
+        return books.values().stream()
+                .filter(n -> n.getGenre().equals(genre)).collect(Collectors.toList());
     }
 }
