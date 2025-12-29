@@ -20,8 +20,11 @@ public class Book {
         if (author == null) {
             throw new IllegalArgumentException("Автор должен быть указан.");
         }
-        if (year < 0 || year > LocalDate.now().getYear() + 1) {
-            throw new IllegalArgumentException("Год не может быть отрицательным!");
+        if (year < 0) {
+            throw new IllegalArgumentException("Год не может быть отрицательным: " + year);
+        }
+        if (year > LocalDate.now().getYear() + 1) {
+            throw new IllegalArgumentException("Год не может быть в будущем: " + year);
         }
         if (genre == null) {
             throw new IllegalArgumentException("Жанр должен быть указан.");

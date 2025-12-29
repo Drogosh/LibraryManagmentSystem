@@ -16,7 +16,7 @@ public class Author implements Comparable<Author>{
     }
 
     public Author(String name) {
-        this(name, "Нет данных");
+        this(name, "Нет данных.");
     }
 
     public String validateName(String name){

@@ -119,10 +119,10 @@ void main() {
     System.out.println("\n8. Поиск с использованием Predicate:");
 
     System.out.println("Книги российских авторов:");
-    List<Book> russinBooks = library.findBooks(b -> b.getAuthor().getCountry().equalsIgnoreCase("Россия"));
+    List<Book> russianBooks = library.findBooks(b -> b.getAuthor().getCountry().equalsIgnoreCase("Россия"));
     //    russinBooks.forEach(System.out::println);
 
-    for (Book book: russinBooks){
+    for (Book book: russianBooks){
         System.out.println("Навазние книги: " + book.getTitle() + ", автор: " + book.getAuthor().getName()+ ", страна: " + book.getAuthor().getCountry());
     }
 

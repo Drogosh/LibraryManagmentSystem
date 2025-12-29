@@ -71,7 +71,7 @@ public class Library {
     }
 
     public void borrowBook(int id) throws BookNotFoundException {
-        Book book = books.get(id);
+        Book book = findById(id);
         if (book.getStatus() != BookStatus.AVAILABLE){
             throw new BookNotFoundException(
                     "Книга не может быть выдана. Её текущий статус: " + book.getStatus().getDescription()
@@ -81,7 +81,7 @@ public class Library {
     }
 
     public void returnBook(int id) throws BookNotFoundException {
-        Book book = books.get(id);
+        Book book = findById(id);
         if (book.getStatus() != BookStatus.BORROWED){
             throw new IllegalStateException(
                     "Книга не была выдана. Её текущий статус: " + book.getStatus().getDescription()
@@ -122,8 +122,8 @@ public class Library {
                 .collect(Collectors.toList());
     }
 
-    public void reserveBook(int id){
-        Book book = books.get(id);
+    public void reserveBook(int id) throws BookNotFoundException {
+        Book book = findById(id);
         if (book.getStatus() != BookStatus.AVAILABLE){
             throw new IllegalStateException(
                     "Книга не может быть зарезервирована. Её текущий статус: " + book.getStatus().getDescription()
