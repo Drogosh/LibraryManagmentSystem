@@ -100,4 +100,14 @@ public class Library {
         book.setStatus(BookStatus.BORROWED);
     }
 
+    public void returnBook(int id) throws BookNotFoundException {
+        Book book = books.get(id);
+        if (book.getStatus() != BookStatus.BORROWED){
+            throw new IllegalStateException(
+                    "Книга не была выдана. Её текущий статус: " + book.getStatus().getDescription()
+            );
+        }
+        book.setStatus(BookStatus.AVAILABLE);
+    }
+
 }

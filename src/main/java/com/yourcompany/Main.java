@@ -82,7 +82,16 @@ void main() {
         System.out.println("\nПытаемся снова выдать 'Война и мир':");
         library.borrowBook(warAndPeace.getId());
     } catch (BookNotFoundException | IllegalStateException e) {
-        System.err.println("Ошибка: " + e.getMessage());
+        System.out.println("!!!Ошибка: " + e.getMessage());
+    }
+
+    System.out.println("\n6. Возврат книги:");
+    try {
+        library.returnBook(warAndPeace.getId());
+        System.out.println("Книга успешно возвращена!");
+        System.out.println("Статус книги: " + warAndPeace.getStatus().getDescription());
+    } catch (BookNotFoundException | IllegalStateException e) {
+        System.out.println("Ошибка: " + e.getMessage());
     }
 
 
