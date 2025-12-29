@@ -134,5 +134,25 @@ void main() {
         System.out.println("Навазние книги: " + book.getTitle() + ", автор: " + book.getAuthor().getName()+ ", год: " + book.getYear());
     }
 
+    // Демонстрация исключений
+    System.out.println("\n9. Демонстрация обработки исключений:");
+
+    try {
+        // Пытаемся найти несуществующую книгу
+        System.out.println("Поиск несуществующей книги (ID: 999):");
+        library.findById(999);
+    } catch (BookNotFoundException e) {
+        System.out.println("!!!Поймано исключение: " + e.getMessage());
+    }
+
+    try {
+        // Пытаемся добавить дубликат
+        System.out.println("\nПопытка добавить дубликат книги:");
+        library.addBook(warAndPeace);
+    } catch (DuplicateBookException e) {
+        System.out.println("!!!Поймано исключение: " + e.getMessage());
+    }
+
+
 
 }

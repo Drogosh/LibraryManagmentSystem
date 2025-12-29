@@ -39,8 +39,11 @@ public class Library {
         return totalBooks;
     }
 
-    public Optional<Book> findById(int id) throws BookNotFoundException {
-        return Optional.ofNullable(books.get(id));
+    public Book findById(int id) throws BookNotFoundException {
+        if (books.containsKey(id)){
+            return books.get(id);
+        }
+        throw new BookNotFoundException("Книга с указанным id не найдена.");
     }
 
     public List<Book> findBooksByAuthor(String authorName){
