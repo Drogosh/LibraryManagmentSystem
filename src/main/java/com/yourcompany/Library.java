@@ -3,6 +3,7 @@ package com.yourcompany;
 import java.time.LocalDate;
 import java.time.Year;
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -113,6 +114,12 @@ public class Library {
         return books.values().stream()
                 .max(Comparator.comparing(Book::getYear))
                 .orElse(null);
+    }
+
+    public List<Book> findBooks(Predicate<Book> predicate) {
+        return books.values().stream()
+                .filter(predicate)
+                .collect(Collectors.toList());
     }
 
 }

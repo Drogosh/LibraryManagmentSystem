@@ -115,4 +115,24 @@ void main() {
     System.out.println("Самая новая книга:");
     System.out.println(library.getNewestBook().getTitle() +", год выпуска: " + library.getNewestBook().getYear());
 
+    // Поиск с использованием Predicate
+    System.out.println("\n8. Поиск с использованием Predicate:");
+
+    System.out.println("Книги российских авторов:");
+    List<Book> russinBooks = library.findBooks(b -> b.getAuthor().getCountry().equalsIgnoreCase("Россия"));
+    //    russinBooks.forEach(System.out::println);
+
+    for (Book book: russinBooks){
+        System.out.println("Навазние книги: " + book.getTitle() + ", автор: " + book.getAuthor().getName()+ ", страна: " + book.getAuthor().getCountry());
+    }
+
+    // Книги, изданные после 1900 года
+    System.out.println("\nКниги, изданные после 1900 года:");
+    List<Book> modernBooks = library.findBooks(b -> b.getYear() > 1900);
+
+    for (Book book: modernBooks){
+        System.out.println("Навазние книги: " + book.getTitle() + ", автор: " + book.getAuthor().getName()+ ", год: " + book.getYear());
+    }
+
+
 }
