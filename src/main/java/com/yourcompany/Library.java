@@ -1,5 +1,8 @@
 package com.yourcompany;
 
+import com.yourcompany.exception.BookNotFoundException;
+import com.yourcompany.exception.DuplicateBookException;
+
 import java.time.Year;
 import java.util.*;
 import java.util.function.Predicate;
@@ -14,7 +17,7 @@ public class Library {
         this.books = new HashMap<>();
     }
 
-    public void addBook(Book book) throws DuplicateBookException{
+    public void addBook(Book book) throws DuplicateBookException {
         if (books.containsKey(book.getId())){
             throw new DuplicateBookException("Книга \"" + book.getTitle() + "\" уже добавлена в библиотеку.");
         }

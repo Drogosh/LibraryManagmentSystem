@@ -1,4 +1,4 @@
-package com.yourcompany;
+package com.yourcompany.exception;
 
 public class DuplicateBookException extends Exception {
     public DuplicateBookException(String message) {
